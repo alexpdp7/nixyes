@@ -10,6 +10,12 @@
   notify:
   - Restart sshd
 
+- name: Install basic utilities
+  ansible.builtin.package:
+    name:
+      - nmap
+    state: latest
+
 - name: Install talk, talkd
   ansible.builtin.package:
     name:
