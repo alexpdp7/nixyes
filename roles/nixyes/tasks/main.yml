@@ -1,0 +1,19 @@
+- name: Run apt update
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Enable password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: PasswordAuthentication yes
+  notify:
+  - Restart sshd
+
+- name: Install talk, talkd
+  ansible.builtin.package:
+    name:
+      - talk
+      - talkd
+    state: latest
+
