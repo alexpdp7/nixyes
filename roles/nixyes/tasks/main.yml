@@ -22,3 +22,10 @@
       - talk
       - talkd
     state: latest
+
+- name: Install postfix, mutt
+  ansible.builtin.package:
+    name:
+      - postfix
+      - mutt
+    state: latest
