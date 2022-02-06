@@ -31,3 +31,9 @@ $ poetry run ansible-playbook configure.yml
 This uses Ansible Core. Documentation is at:
 
 https://docs.ansible.com/ansible-core/2.12/index.html
+
+## Ideas
+
+* Configure skel so weechat autoconnects to localhost.
+* Configure skel so weechat autorejoins channels.
+* Make postfix, ngircd, inetd listen on loopback
