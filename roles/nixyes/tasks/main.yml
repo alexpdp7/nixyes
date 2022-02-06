@@ -29,3 +29,10 @@
       - postfix
       - mutt
     state: latest
+
+- name: Install ngircd, weechat
+  ansible.builtin.package:
+    name:
+      - ngircd
+      - weechat
+    state: latest

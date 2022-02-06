@@ -12,6 +12,16 @@ $ talk otheruser@localhost ( optional tty name )
 
 Run `mutt`. You should be able to mail other users by their username.
 
+## IRC
+
+Run `weechat`.
+
+```
+/server add localhost localhost
+/connect localhost
+/join #...
+```
+
 # Hacking
 
 ```
