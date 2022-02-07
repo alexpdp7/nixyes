@@ -19,6 +19,14 @@ $ wall <message to broadcast>
 Run `mutt`.
 You should be able to mail other users by their username.
 
+### Mailman3
+
+```
+$ sudo django-admin createsuperuser --pythonpath /usr/share/mailman3-web --settings settings --username alex --email alex@nixyes
+$ mutt
+$ lynx
+```
+
 ## IRC
 
 Run `weechat`.
@@ -39,7 +47,7 @@ If you don't want to use `cloud-run`, then overwrite `inventory` with a non-exec
 Otherwise, install `cloud-run`, then run:
 
 ```
-$ cloud-run run debian-bullseye nixyes
+$ cloud-run run debian-bullseye nixyes --mem 2G --forward 8443:443
 ```
 
 This will spin up a VM.
