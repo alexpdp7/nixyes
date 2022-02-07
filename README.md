@@ -8,6 +8,12 @@ $ talk otheruser@localhost ( optional tty name )
 
 `otheruser` will get a prompt to show how to reply.
 
+## `wall`
+
+```
+$ wall <message to broadcast>
+```
+
 ## Mail
 
 Run `mutt`.
