@@ -1,1 +1,3 @@
-nixyes ansible_host=localhost ansible_port=2222
+#!/bin/sh
+
+cloud-run ansible-inventory "$@"

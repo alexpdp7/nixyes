@@ -10,7 +10,8 @@ $ talk otheruser@localhost ( optional tty name )
 
 ## Mail
 
-Run `mutt`. You should be able to mail other users by their username.
+Run `mutt`.
+You should be able to mail other users by their username.
 
 ## IRC
 
@@ -24,9 +25,37 @@ Run `weechat`.
 
 # Hacking
 
+The default inventory is a script using [cloud-run](https://github.com/alexpdp7/cloud-run).
+`cloud-run` uses `qemu` to spin VMs using cloud images.
+
+If you don't want to use `cloud-run`, then overwrite `inventory` with a non-executable file containing an inventory that contains a `nixyes` host.
+
+Otherwise, install `cloud-run`, then run:
+
+```
+$ cloud-run run debian-bullseye nixyes
+```
+
+This will spin up a VM.
+The process will remain attached to the console of the VM until it is shut down.
+
+Switch to another terminal, and run:
+
 ```
 $ poetry run ansible-playbook configure.yml 
 ```
+
+To ssh into the VM, run:
+
+```
+$ ssh $(cloud-run ssh nixyes)
+```
+
+Shut down the `nixyes` VM so the `cloud-run run` process exits.
+
+Use `cloud-run ssh nixyes --user otheruser` to log in as `otheruser`.
+
+## References
 
 This uses Ansible Core. Documentation is at:
 
