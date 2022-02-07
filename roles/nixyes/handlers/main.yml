@@ -2,3 +2,13 @@
   ansible.builtin.service:
     name: ssh
     state: restarted
+
+- name: Restart postfix
+  ansible.builtin.service:
+    name: postfix
+    state: restarted
+
+- name: Restart apache2
+  ansible.builtin.service:
+    name: apache2
+    state: restarted

@@ -37,3 +37,44 @@
       - ngircd
       - weechat
     state: latest
+
+- name: Install mailman3-full
+  ansible.builtin.package:
+    name: mailman3-full
+    state: latest
+
+- name: Configure postfix for mailman3
+  ansible.builtin.blockinfile:
+    path: /etc/postfix/main.cf
+    block: |
+      {% raw %}
+      # Mailman
+      owner_request_special = no
+      transport_maps = hash:/var/lib/mailman3/data/postfix_lmtp
+      local_recipient_maps = proxy:unix:passwd.byname $alias_maps hash:/var/lib/mailman3/data/postfix_lmtp
+      relay_domains = ${{$compatibility_level} < {2} ? {$mydestination} : {}} hash:/var/lib/mailman3/data/postfix_domains
+      {% endraw %}
+  notify:
+  - Restart postfix
+
+- name: Enable SSL site in apache2
+  ansible.builtin.command: a2ensite default-ssl.conf
+  notify:
+  - Restart apache2
+
+- name: Enable SSL mod in apache2
+  ansible.builtin.command: a2enmod ssl proxy_uwsgi
+  notify:
+  - Restart apache2
+
+- name: Configure apache2 for mailman3
+  ansible.builtin.blockinfile:
+    path: /etc/apache2/sites-available/default-ssl.conf
+    block: |
+      {% raw %}
+      # Mailman
+      Include /etc/mailman3/apache.conf
+      {% endraw %}
+    insertbefore: </VirtualHost>
+  notify:
+  - Restart apache2
