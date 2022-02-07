@@ -14,6 +14,7 @@
   ansible.builtin.package:
     name:
       - nmap
+      - lynx
     state: latest
 
 - name: Install talk, talkd
